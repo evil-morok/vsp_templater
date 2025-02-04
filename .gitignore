@@ -1,0 +1,9 @@
+out
+dist
+node_modules
+.vscode-test/
+*.vsix
+/.vscode
+/eslint.config.mjs
+/.vscode-test.mjs
+/vsc-extension-quickstart.md

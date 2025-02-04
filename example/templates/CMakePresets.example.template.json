@@ -1,0 +1,28 @@
+{
+    "version": 5,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 22
+    },
+    "configurePresets": [
+        {
+            "name": "default",
+            "displayName": "{{{PresetName}}}",
+            "description": "",
+            "binaryDir": "out/build/${presetName}",
+            "generator": "Ninja",
+            "cacheVariables": {
+                "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/install",
+                "CMAKE_BUILD_TYPE": "{{{CMakeBuildType}}}",
+                "CMAKE_TOOLCHAIN_FILE": "{{{CMakeToolchainFile}}}",
+                "BOARD": "{{{BoardName}}}"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "default",
+            "configurePreset": "default"
+        }
+    ]
+}

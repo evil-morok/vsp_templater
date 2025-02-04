@@ -1,0 +1,97 @@
+{
+  "name": "vs-templater",
+  "displayName": "vs_templater",
+  "description": "A simple template tool",
+  "publisher": "alekseirogov",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.96.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "vsp_templater",
+          "title": "VSP Templater",
+          "icon": "resources/icon.png"
+        }
+      ]
+    },
+    "views": {
+      "vsp_templater": [
+        {
+          "id": "vsp_templaterView",
+          "name": "Templates"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "vs-templater.refreshTree",
+        "title": "vs-templater: Refresh templates",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "vs-templater.applyTemplate",
+        "title": "vs-templater: Apply template",
+        "icon": "$(zap)"
+      },
+      {
+        "command": "workbench.actions.treeView.vsp_templaterView.collapseAll",
+        "title": "Collapse All",
+        "icon": "$(chevron-down)"
+      }
+    ],
+    "menus": {
+      "view/item/context": [
+        {
+          "command": "vs-templater.applyTemplate",
+          "when": "viewItem == leafItem",
+          "group": "inline"
+        }
+      ],
+      "view/title": [
+      {
+        "command": "workbench.actions.treeView.vsp_templaterView.collapseAll",
+        "when": "view == vsp_templaterView",
+        "group": "navigation"
+      },
+      {
+        "command": "vs-templater.refreshTree",
+        "when": "view == vsp_templaterView",
+        "group": "navigation"
+      }
+    ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.96.0",
+    "@types/yaml": "^1.9.6",
+    "@typescript-eslint/eslint-plugin": "^8.22.0",
+    "@typescript-eslint/parser": "^8.22.0",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1",
+    "eslint": "^9.19.0",
+    "typescript": "^5.7.3",
+    "yaml": "^2.7.0"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  }
+}

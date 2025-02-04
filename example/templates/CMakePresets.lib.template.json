@@ -1,0 +1,29 @@
+{
+    "version": 5,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 22
+    },
+    "configurePresets": [
+        {
+            "name": "default",
+            "displayName": "{{{PresetName}}}",
+            "description": "Library build",
+            "binaryDir": "out/build/${presetName}",
+            "generator": "Ninja",
+            "cacheVariables": {
+                "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/install",
+                "BUILD_PROJECT": "{{{BuildProject}}}",
+                "CMAKE_BUILD_TYPE": "{{{CMakeBuildType}}}",
+                "CMAKE_TOOLCHAIN_FILE": "{{{CMakeToolchainFile}}}",
+                "BUILD_MCU": "{{{BuildMcu}}}"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "default",
+            "configurePreset": "default"
+        }
+    ]
+}

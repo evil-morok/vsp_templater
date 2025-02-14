@@ -1,9 +1,14 @@
 {
-  "name": "vs-templater",
-  "displayName": "vs_templater",
+  "name": "vsp-templater",
+  "displayName": "vsp_templater",
   "description": "A simple template tool",
   "publisher": "alekseirogov",
   "version": "0.0.1",
+  "icon": "resources/vsp_templater.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/evil-morok/vsp_templater"
+  },
   "engines": {
     "vscode": "^1.96.0"
   },

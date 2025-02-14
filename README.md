@@ -107,7 +107,7 @@ Feel free to use and combine both methods to create clear and coherent configura
 
 I don't know.
 
-### 1.0.0
+### 0.0.1
 
 Initial release.
 

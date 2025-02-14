@@ -1,76 +1,92 @@
-# Build type defaults
-.debug:
-  substitutions:
-  - "CMakeBuildType": "Debug"
-.release:
-  substitutions:
-  - "CMakeBuildType": "Release"
-.minsizerel:
-  substitutions:
-  - "CMakeBuildType": "MinSizeRel"
+# # Build type defaults
+# .debug:
+#   substitutions:
+#   - "CMakeBuildType": "Debug"
+# .release:
+#   substitutions:
+#   - "CMakeBuildType": "Release"
+# .minsizerel:
+#   substitutions:
+#   - "CMakeBuildType": "MinSizeRel"
 
-# Architecture defaults
-.native:
-  substitutions:
-  - "CMakeToolchainFile": "toolchain-native-gcc.cmake"
-  - "BuildMcu": "Native"
+# # Architecture defaults
+# .native:
+#   substitutions:
+#   - "CMakeToolchainFile": "toolchain-native-gcc.cmake"
+#   - "BuildMcu": "Native"
 
-.arm:
-  substitutions:
-  - "CMakeToolchainFile": "toolchain-arm-none-eabi.cmake"
+# .arm:
+#   substitutions:
+#   - "CMakeToolchainFile": "toolchain-arm-none-eabi.cmake"
 
-.nuvoton_m031:
+# .nuvoton_m031:
+#   extends:
+#   - .arm
+#   substitutions:
+#   - "BuildMcu": "nuvoton_m031"
+
+# # Section defaults
+# .lib_default:
+#   file_mappings:
+#   - "templates/CMakePresets.lib.template.json": "CMakePresets.json"
+#   substitutions:
+#   - "BuildProject": "LIBRARY"
+
+# .test_defaults:
+#   file_mappings:
+#   - "templates/CMakePresets.tests.template.json": "CMakePresets.json"
+#   - "templates/launch.template.json": "launch.json"
+#   substitutions:
+#   - "BuildProject": "TESTS"
+
+# # Sections definition
+
+# # Documentation
+
+# # Tests
+# tests:
+#   name: "Tests"
+#   extends:
+#   - .test_defaults # Examples
+#   - .debug
+#   - .native
+
+# # Library
+# lib:
+#   name: "Library"
+#   extends:
+#   - .lib_default
+#   debug_conf:
+#     name: "Debug"
+#     extends:
+#     - .debug
+#     build_native:
+#       name: "Native"
+#       substitutions:
+#       - "PresetName": "Native"
+#       extends:
+#       - .native
+#     nuvoton:
+#       name: "Nuvoton"
+#       build_nuvoton_m031:
+#         name: "Nuvoton M031"
+#         substitutions:
+#         - "PresetName": "Nuvoton M031"
+#         extends:
+#         - .nuvoton_m031
+
+.some_defaults:
+  substitutions:
+  - a_first_word: "Hello"
+section_1:
+  name: World
   extends:
-  - .arm
+  - .some_defaults
   substitutions:
-  - "BuildMcu": "nuvoton_m031"
-
-# Section defaults
-.lib_default:
-  file_mappings:
-  - "templates/CMakePresets.lib.template.json": "CMakePresets.json"
-  substitutions:
-  - "BuildProject": "LIBRARY"
-
-.test_defaults:
-  file_mappings:
-  - "templates/CMakePresets.tests.template.json": "CMakePresets.json"
-  - "templates/launch.template.json": "launch.json"
-  substitutions:
-  - "BuildProject": "TESTS"
-
-# Sections definition
-
-# Documentation
-
-# Tests
-tests:
-  name: "Tests"
+  - a_second_word: "World"
+section_2:
+  name: "Random person"
   extends:
-  - .test_defaults # Examples
-  - .debug
-  - .native
-
-# Library
-lib:
-  name: "Library"
-  extends:
-  - .lib_default
-  debug_conf:
-    name: "Debug"
-    extends:
-    - .debug
-    build_native:
-      name: "Native"
-      substitutions:
-      - "PresetName": "Native"
-      extends:
-      - .native
-    nuvoton:
-      name: "Nuvoton"
-      build_nuvoton_m031:
-        name: "Nuvoton M031"
-        substitutions:
-        - "PresetName": "Nuvoton M031"
-        extends:
-        - .nuvoton_m031
+  - .some_defaults
+  substitutions:
+  - a_second_word: "Buddy"

@@ -7,3 +7,4 @@ node_modules
 /eslint.config.mjs
 /.vscode-test.mjs
 /vsc-extension-quickstart.md
+/example/*.bak

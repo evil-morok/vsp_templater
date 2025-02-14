@@ -2,6 +2,7 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 import * as path from 'path';
+import * as fs from 'fs';
 import * as treeView from './tree_view';
 
 // This method is called when your extension is activated
@@ -28,6 +29,20 @@ export function activate(context: vscode.ExtensionContext) {
             return;
         }
 	const filePath = path.join(workspaceFolders[0].uri.fsPath, 'templates.yaml');
+
+	const initContent = `
+my_first_template:
+  name: My First Template
+  substitutions:
+  - key: value
+  file_mappings:
+  - source_file: target_file
+`;
+
+	if (!fs.existsSync(filePath)) {
+		fs.writeFileSync(filePath, initContent, 'utf8');
+		console.log('File created');
+	}
 
 	treeView.activate(context, filePath);
 }

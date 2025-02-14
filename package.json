@@ -3,7 +3,7 @@
   "displayName": "vsp_templater",
   "description": "A simple template tool",
   "publisher": "alekseirogov",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "icon": "resources/vsp_templater.png",
   "repository": {
     "type": "git",

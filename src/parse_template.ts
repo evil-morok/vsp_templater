@@ -16,6 +16,7 @@ export async function parseTemplate(inputFile: string, outputFile: string,
     const outputUri = vscode.Uri.file(outputFile);
     await vscode.workspace.fs.writeFile(outputUri,
                                         new TextEncoder().encode(content));
+    await vscode.commands.executeCommand('workbench.action.reloadWindow');
 
   } catch (error) {
     vscode.window.showErrorMessage(`Error processing the file: ${error}`);

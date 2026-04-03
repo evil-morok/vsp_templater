@@ -1,5 +1,6 @@
 import * as fs from 'fs';
 import * as Handlebars from 'handlebars';
+import * as path from 'path';
 import * as vscode from 'vscode';
 
 export async function parseTemplate(inputFile: string, outputFile: string,
@@ -7,6 +8,11 @@ export async function parseTemplate(inputFile: string, outputFile: string,
     Promise<void> {
   try {
     const inputUri = vscode.Uri.file(inputFile);
+    try {
+      await vscode.workspace.fs.stat(inputUri);
+    } catch {
+      throw new Error(`Template file not found: ${path.basename(inputFile)}`);
+    }
     const fileContent = await vscode.workspace.fs.readFile(inputUri);
     let content = new TextDecoder().decode(fileContent);
 
@@ -16,11 +22,9 @@ export async function parseTemplate(inputFile: string, outputFile: string,
     const outputUri = vscode.Uri.file(outputFile);
     await vscode.workspace.fs.writeFile(outputUri,
                                         new TextEncoder().encode(content));
-    await vscode.commands.executeCommand('workbench.action.reloadWindow');
 
   } catch (error) {
-    vscode.window.showErrorMessage(`Error processing the file: ${error}`);
-    console.error('Error processing the file:', error);
+    throw error;
   }
 }
 

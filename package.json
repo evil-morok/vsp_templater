@@ -61,17 +61,17 @@
         }
       ],
       "view/title": [
-      {
-        "command": "workbench.actions.treeView.vsp_templaterView.collapseAll",
-        "when": "view == vsp_templaterView",
-        "group": "navigation"
-      },
-      {
-        "command": "vs-templater.refreshTree",
-        "when": "view == vsp_templaterView",
-        "group": "navigation"
-      }
-    ]
+        {
+          "command": "workbench.actions.treeView.vsp_templaterView.collapseAll",
+          "when": "view == vsp_templaterView",
+          "group": "navigation"
+        },
+        {
+          "command": "vs-templater.refreshTree",
+          "when": "view == vsp_templaterView",
+          "group": "navigation"
+        }
+      ]
     }
   },
   "scripts": {
@@ -97,6 +97,7 @@
     "yaml": "^2.7.0"
   },
   "dependencies": {
+    "handlebars": "^4.7.8",
     "js-yaml": "^4.1.0"
   }
 }
